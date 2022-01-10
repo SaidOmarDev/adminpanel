@@ -17,6 +17,16 @@ main {
   overflow-y: hidden;
 }
 
+.flashed{
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    background-color: #222959;
+    color: aliceblue;
+    padding: 10px 20px;
+    font-size: 13px;
+    border-radius: 5px;
+}
 .sidebar{
     position: fixed;
     top: 0;

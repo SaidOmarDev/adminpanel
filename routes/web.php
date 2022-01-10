@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\ClientController;
+use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,11 +17,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('users.create');
+    return redirect('/users');
 });
 
-
-
-Route::get('login', function () {
-    return view('components.login');
-});
+Route::resource('users', UserController::class)->except('show');
+Route::resource('clients', ClientController::class)->except('show');
+Route::resource('projects', ProjectController::class)->except('show');

@@ -6,7 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Admin Panel</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="{{ asset('style.css') }}">
     </head>
     <body>
         {{-- Navbar --}}
@@ -92,25 +92,25 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link text-white">
-                            <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
-                            Users
+                            <a href="/users" class="nav-link text-white">
+                                <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
+                                Users
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="nav-link text-white">
+                            <a href="/clients" class="nav-link text-white">
                                 <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
                                 Clients
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="nav-link text-white">
+                            <a href="/projects" class="nav-link text-white">
                             <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
                             Projects
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="nav-link text-white">
+                            <a href="/tasks" class="nav-link text-white">
                             <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"/></svg>
                             Tasks
                             </a>
@@ -137,6 +137,11 @@
                 {{ $slot }}
             </div>
         </main>
+        @if (session()->has('success'))
+            <div class="flashed">
+                <span>{{ session('success') }}</span>
+            </div>
+        @endif
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
         <script>
             (function () {
