@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProjectRequest;
 use App\Models\Project;
-use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
 
 class ProjectController extends Controller
 {
@@ -19,20 +18,29 @@ class ProjectController extends Controller
         return view('projects.create');
     }
 
-    public function store()
+    public function store(ProjectRequest $request)
     {
-        // ddd(request()->all());
-        $attributes = request()->validate([
-            'title' => ['required', 'min:15', 'max:25'],
-            'description' => ['required', 'max:255'],
-            'deadline' => ['required'],
-            'status' => ['required'],
-            'user_id' => ['required', Rule::exists('users', 'id')],
-            'client_id' => ['required', Rule::exists('clients', 'id')]
-        ]);
+        Project::create($request->all());
 
-        Project::create($attributes);
+        return redirect('projects')->with('success', 'New project is created');
+    }
 
-        return redirect('/')->with('success', 'New project is created');
+    public function edit(Project $project)
+    {
+        return view('projects.edit', compact('project'));
+    }
+
+    public function update(Project $project, ProjectRequest $request)
+    {
+        $project->update($request->all());
+
+        return redirect('projects')->with('success', 'Targeted project is updated');
+    }
+
+    public function destroy(Project $project)
+    {
+        $project->delete();
+        
+        return redirect('projects')->with('success', 'Targeted project is deleted');
     }
 }

@@ -29,7 +29,7 @@
                 </div>
                 <div class="form-group">
                     <label for="user" class="form-label">Assigned user</label>
-                    <select class="form-control" name="user" id="user">
+                    <select class="form-select" name="user_id" id="user">
                         @php
                             $users = \App\Models\User::all();
                         @endphp
@@ -43,7 +43,7 @@
                 </div>
                 <div class="form-group">
                     <label for="client" class="form-label">Assigned client</label>
-                    <select class="form-select" name="client" id="client">
+                    <select class="form-select" name="client_id" id="client">
                         @php
                             $clients = \App\Models\Client::all();
                         @endphp

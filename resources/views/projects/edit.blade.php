@@ -1,35 +1,39 @@
 <x-layout>
     <div class="card">
         <div class="card-header">
-            Create task
+            Update project
         </div>
         <div class="card-body">
-            <form action="/tasks" method="POST" enctype="multipart/form-data">
+            <form action="/projects/{{ $project->id }}" method="POST" enctype="multipart/form-data">
                 @csrf
+                @method('PATCH')
                 <div class="form-group">
                     <label for="title" class="form-label">Title</label>
-                    <input type="text" class="form-control" id="title" name="title">
+                    <input type="text" class="form-control" id="title" name="title" value="{{ $project->title }}">
                     @error('title')
                         <x-error :message="$message" />
                     @enderror
                 </div>
                 <div class="form-group">
                     <label for="description" class="form-label">Description</label>
-                    <textarea class="form-control" id="description" name="description" rows="10"></textarea>
+                    <textarea class="form-control" id="description" name="description" rows="10" >
+                        {{ $project->description }}
+                    </textarea>
                     @error('description')
                         <x-error :message="$message" />
                     @enderror
                 </div>
                 <div class="form-group">
                     <label for="deadline" class="form-label">Deadline</label>
-                    <input type="date" class="form-control" id="deadline" name="deadline">
+                    <input type="date" class="form-control" id="deadline" name="deadline" value="{{ $project->deadline }}">
                     @error('deadline')
                         <x-error :message="$message" />
                     @enderror
                 </div>
                 <div class="form-group">
                     <label for="user" class="form-label">Assigned user</label>
-                    <select class="form-select" name="user_id" id="user">
+                    <select class="form-control" name="user_id" id="user">
+                        <option value="{{ $project->user->id }}" selected>{{ $project->user->name }}</option>
                         @php
                             $users = \App\Models\User::all();
                         @endphp
@@ -44,25 +48,12 @@
                 <div class="form-group">
                     <label for="client" class="form-label">Assigned client</label>
                     <select class="form-select" name="client_id" id="client">
+                        <option value="{{ $project->client->id }}" selected>{{ $project->client->contact_name }}</option>
                         @php
                             $clients = \App\Models\Client::all();
                         @endphp
                         @foreach ($clients as $client)
                             <option value="{{ $client->id }}">{{ $client->contact_name }}</option>
-                        @endforeach
-                    </select>
-                    @error('client')
-                        <x-error :message="$message" />
-                    @enderror
-                </div>
-                <div class="form-group">
-                    <label for="project" class="form-label">Assigned project</label>
-                    <select class="form-select" name="project_id" id="project">
-                        @php
-                            $projects = \App\Models\Project::all();
-                        @endphp
-                        @foreach ($projects as $project)
-                            <option value="{{ $project->id }}">{{ $project->title }}</option>
                         @endforeach
                     </select>
                     @error('client')
@@ -78,7 +69,7 @@
                         <x-error :message="$message" />
                     @enderror
                 </div>
-                <button class="btn btn-primary" type="submit">Create</button>
+                <input class="btn btn-primary" type="submit" value="Create">
             </form>
         </div>
     </div>
