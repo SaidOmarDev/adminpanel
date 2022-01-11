@@ -33,7 +33,49 @@ main {
     left: 0;
     width: 280px;
     height: 100vh;
+    background-color: #13193c;
     z-index: 100;
+    color: #121527 !important;
+}
+
+hr{
+    background-color: aliceblue !important;
+    height: 1px !important;
+}
+nav{
+    background-color: #13193c;
+}
+.nav-link{
+    padding: .5rem 2rem;
+}
+.nav-link:hover{
+    background-color: #17226d;
+}
+.create-btn{
+    background: #777acf;
+    color: aliceblue;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 10px 20px;
+}
+.btn-edit{
+    background-color: #8688b7;
+    color: #fff;
+    padding: 0.25rem 0.5rem;
+    font-size: .875rem;
+    border-radius: 0.2rem;
+}
+.btn-danger{
+    padding: 0.25rem 0.5rem;
+    font-size: .875rem;
+    border-radius: 0.2rem;
+}
+.card{
+    border: 3px solid rgb(183 183 183 / 13%);
+}
+.card-header{
+    background-color: #fff;
+    border-bottom: 1px solid rgb(149 192 255 / 25%);
 }
 
 .b-example-divider {

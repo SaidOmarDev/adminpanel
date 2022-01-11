@@ -9,15 +9,6 @@
         <link rel="stylesheet" href="{{ asset('style.css') }}">
     </head>
     <body>
-        {{-- Navbar --}}
-        {{-- <nav class="navbar navbar-light fixed-top bg-light flex-md-nowrap p-0 shadow">
-            <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Admin Panel</a>
-            <ul class="navbar-nav px-3">
-                <li class="nav-item text-nowrap">
-                <a class="nav-link" href="#">Sign out</a>
-                </li>
-            </ul>
-        </nav> --}}
         <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
             <symbol id="bootstrap" viewBox="0 0 118 94">
                 <title>Bootstrap</title>
@@ -78,25 +69,27 @@
         </svg>
         <main>
             <div class="sidebar">
-                <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="height: 100%">
-                    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                <div class="d-flex flex-column flex-shrink-0 py-3" style="height: 100%">
+                    <a href="/" class="px-3 d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
                         {{-- <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg> --}}
                         <span class="fs-4">CRM</span>
                     </a>
                     <hr>
                     <ul class="nav nav-pills flex-column mb-auto">
                         <li class="nav-item">
-                            <a href="#" class="nav-link text-white">
+                            <a href="/" class="nav-link text-white">
                             <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
                             Dashboard
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="/users" class="nav-link text-white">
-                                <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
-                                Users
-                            </a>
-                        </li>
+                        @admin
+                            <li class="nav-item">
+                                <a href="/users" class="nav-link text-white">
+                                    <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
+                                    Users
+                                </a>
+                            </li>
+                        @endadmin
                         <li>
                             <a href="/clients" class="nav-link text-white">
                                 <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
@@ -117,7 +110,17 @@
                         </li>
                     </ul>
                     <hr>
-                    <div class="dropdown">
+                </div>
+            </div>
+
+            <div class="container-fluid" style="margin-left: 280px">
+                <nav class="navbar flex-md-nowrap py-2 shadow">
+                    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#"></a>
+                    <form method="POST" action="/logout">
+                        @csrf
+                        <input type="submit"  value="Logout">
+                    </form>
+                    {{-- <div class="dropdown px-3">
                         <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                             <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
                             <strong>mdo</strong>
@@ -129,11 +132,8 @@
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="#">Sign out</a></li>
                         </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="container-fluid" style="margin-left: 280px">
+                    </div> --}}
+                </nav>
                 {{ $slot }}
             </div>
         </main>

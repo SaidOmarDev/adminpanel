@@ -1,9 +1,5 @@
 <x-layout>
-    <div class="my-3">
-        <a href="tasks/create" class="btn btn-success">
-            Create task
-        </a>
-    </div>
+    <x-buttons.create :text="'task'"/>
     <div class="card">
         <div class="card-header">
             Tasks list
@@ -28,13 +24,15 @@
                             <td>{{ $task->client->contact_name }}</td>
                             <td>{{ $task->deadline }}</td>
                             <td>{{ $task->status }}</td>
-                            <td class="d-flex justify-content-between">
-                                <a href="tasks/{{ $task->id }}/edit" class="btn btn-primary">edit</a>
-                                <form action="/tasks/{{ $task->id }}" method="post">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger">delete</button>
-                                </form>
+                            <td class="d-flex justify-content-between py-3">
+                                <a href="tasks/{{ $task->id }}/edit" class="btn btn-edit">edit</a>
+                                @admin
+                                    <form action="/tasks/{{ $task->id }}" method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger">delete</button>
+                                    </form>
+                                @endadmin
                             </td>
                         </tr>
                     @endforeach

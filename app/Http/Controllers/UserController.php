@@ -3,11 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
+    public function __construc()
+    {
+        # code...
+    }
+
     public function index()
     {
         $users = User::all();
@@ -28,7 +34,12 @@ class UserController extends Controller
             'phone' => ['required'],
         ]);
 
-        User::create($attributes);
+        User::create(array_merge($attributes, [
+            'password' => Hash::make('password'),
+            'email_verified_at' => now(),
+            'terms_accepted' => random_int(0, 1),
+            'remember_token' => Str::random(10),
+        ]));
 
         return redirect('users')->with('success', 'New user is created');
     }

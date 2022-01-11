@@ -1,9 +1,5 @@
 <x-layout>
-    <div class="my-3">
-        <a href="users/create" class="btn btn-success">
-            Create user
-        </a>
-    </div>
+    <x-buttons.create :text="'user'" />
     <div class="card">
         <div class="card-header">
             Users list
@@ -24,8 +20,8 @@
                             <td>{{ $user->id }}</td>
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->email }}</td>
-                            <td class="d-flex justify-content-between">
-                                <a href="users/{{ $user->id }}/edit" class="btn btn-primary">edit</a>
+                            <td class="d-flex justify-content-between py-3">
+                                <a href="users/{{ $user->id }}/edit" class="btn btn-edit">edit</a>
                                 <form action="/users/{{ $user->id }}" method="post">
                                     @csrf
                                     @method('DELETE')
