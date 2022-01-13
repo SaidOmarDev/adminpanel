@@ -15,7 +15,7 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $tasks = Task::with(['user', 'client'])->get();
+        $tasks = Task::with(['user', 'client', 'status'])->get();
 
         return view('tasks.index', compact('tasks'));
     }

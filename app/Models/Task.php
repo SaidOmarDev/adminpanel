@@ -26,4 +26,9 @@ class Task extends Model
     {
         return $this->belongsTo(Project::class);
     }
+
+    public function status()
+    {
+        return $this->belongsTo(Status::class, 'status_id');
+    }
 }

@@ -17,8 +17,8 @@ class Admin
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!auth()->user()->name === 'said omar') {
-            abort(403);
+        if (!auth()->user()->id === 1) {
+            return redirect('/');
         }
         return $next($request);
     }

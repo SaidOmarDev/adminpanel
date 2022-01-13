@@ -23,7 +23,7 @@
                             <td>{{ $project->user->name }}</td>
                             <td>{{ $project->client->contact_name }}</td>
                             <td>{{ $project->deadline }}</td>
-                            <td>{{ $project->status }}</td>
+                            <td>{{ $project->status->name }}</td>
                             <td class="d-flex justify-content-between py-3">
                                 <a href="projects/{{ $project->id }}/edit" class="btn btn-edit">edit</a>
                                 @admin

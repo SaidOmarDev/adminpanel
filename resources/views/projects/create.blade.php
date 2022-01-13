@@ -37,7 +37,7 @@
                             <option value="{{ $user->id }}">{{ $user->name }}</option>
                         @endforeach
                     </select>
-                    @error('user')
+                    @error('user_id')
                         <x-error :message="$message" />
                     @enderror
                 </div>
@@ -51,16 +51,21 @@
                             <option value="{{ $client->id }}">{{ $client->contact_name }}</option>
                         @endforeach
                     </select>
-                    @error('client')
+                    @error('client_id')
                         <x-error :message="$message" />
                     @enderror
                 </div>
                 <div class="form-group">
                     <label for="status" class="form-label">Status</label>
-                    <select class="form-select" name="status" id="status">
-                        <option value="status">Status</option>
+                    <select class="form-select" name="status_id" id="status">
+                        @php
+                            $statuses = \App\Models\Status::all();
+                        @endphp
+                        @foreach ($statuses as $status)
+                            <option value="{{ $status->id }}">{{ $status->name }}</option>
+                        @endforeach
                     </select>
-                    @error('status')
+                    @error('status_id')
                         <x-error :message="$message" />
                     @enderror
                 </div>

@@ -77,10 +77,16 @@
                 </div>
                 <div class="form-group">
                     <label for="status" class="form-label">Status</label>
-                    <select class="form-select" name="status" id="status">
-                        <option value="status">Status</option>
+                    <select class="form-select" name="status_id" id="status">
+                        <option value="{{ $task->status->id }}">{{ $task->status->name }}</option>
+                        @php
+                            $statuses = \App\Models\Status::all();
+                        @endphp
+                        @foreach ($statuses as $status)
+                            <option value="{{ $status->id }}">{{ $status->name }}</option>
+                        @endforeach
                     </select>
-                    @error('status')
+                    @error('status_id')
                         <x-error :message="$message" />
                     @enderror
                 </div>

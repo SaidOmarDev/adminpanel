@@ -9,7 +9,7 @@ class ProjectController extends Controller
 {
     public function index()
     {
-        $projects = Project::with(['user', 'client'])->get();
+        $projects = Project::with(['user', 'client', 'status'])->get();
         return view('projects.index', compact('projects'));
     }
 
@@ -40,7 +40,7 @@ class ProjectController extends Controller
     public function destroy(Project $project)
     {
         $project->delete();
-        
+
         return redirect('projects')->with('success', 'Targeted project is deleted');
     }
 }

@@ -18,10 +18,10 @@ class CreateTasksTable extends Migration
             $table->string('title');
             $table->string('description');
             $table->date('deadline');
-            $table->string('status');
             $table->foreignId('user_id')->constrained();
             $table->foreignId('client_id')->constrained();
             $table->foreignId('project_id')->constrained();
+            $table->foreignId('status_id')->constrained();
             $table->softDeletes();
             $table->timestamps();
         });

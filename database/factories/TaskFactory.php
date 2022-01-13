@@ -17,7 +17,7 @@ class TaskFactory extends Factory
             'title' => $this->faker->sentence(3),
             'description' => $this->faker->paragraph(),
             'deadline' => $this->faker->dateTimeBetween('now', '+40 days'),
-            'status' => $this->faker->word(),
+            'status_id' => $this->faker->numberBetween(1, 5),
             'user_id' => $this->faker->numberBetween(1, 50),
             'client_id' => $this->faker->numberBetween(1, 50),
             'project_id' => $this->faker->numberBetween(1, 50)
