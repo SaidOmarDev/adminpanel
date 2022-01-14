@@ -8,34 +8,18 @@ use App\Models\Task;
 
 class TaskController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        $tasks = Task::with(['user', 'client', 'status'])->get();
+        $tasks = Task::with(['user', 'client', 'status'])->filter(request(['search', 'status']))->get();
 
         return view('tasks.index', compact('tasks'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view('tasks.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreTaskRequest  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(StoreTaskRequest $request)
     {
         Task::create($request->all());
@@ -43,24 +27,11 @@ class TaskController extends Controller
         return redirect('tasks')->with('success', 'New task is created');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Task  $task
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Task $task)
     {
         return view('tasks.edit', compact('task'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateTaskRequest  $request
-     * @param  \App\Models\Task  $task
-     * @return \Illuminate\Http\Response
-     */
     public function update(UpdateTaskRequest $request, Task $task)
     {
         $task->update($request->all());
@@ -68,12 +39,6 @@ class TaskController extends Controller
         return redirect('tasks')->with('success', 'Targeted task is updated');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Task  $task
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Task $task)
     {
         $task->delete();

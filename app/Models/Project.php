@@ -31,4 +31,17 @@ class Project extends Model
     {
         return $this->belongsTo(Status::class, 'status_id');
     }
+
+    public function scopeFilter($query, array $filters)
+    {
+        $query->when($filters['search'] ?? false, function ($query, $search) {
+            $query->where('title', 'like', '%'.$search.'%');
+        });
+
+        $query->when($filters['status'] ?? false, function ($query, $status) {
+            $query->whereHas('status', function ($query) use ($status) {
+                $query->where('name', $status);
+            });
+        });
+    }
 }

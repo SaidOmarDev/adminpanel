@@ -148,3 +148,17 @@ nav{
 
 .fw-semibold { font-weight: 600; }
 .lh-tight { line-height: 1.25; }
+
+.search-form input:focus{
+    box-shadow: none;
+}
+.status-dropdown .btn{
+    background-color: #777acf;
+    border: 3px solid #9094ff;
+    border-radius: 5px;
+    color: #fff;
+}
+.status-dropdown .btn:focus{
+    outline: none;
+    box-shadow: none;
+}
