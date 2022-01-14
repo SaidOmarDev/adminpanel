@@ -10,7 +10,7 @@ class TaskController extends Controller
 {
     public function index()
     {
-        $tasks = Task::with(['user', 'client', 'status'])->filter(request(['search', 'status']))->get();
+        $tasks = Task::with(['user', 'client', 'status'])->filter(request(['search', 'status']))->paginate(10)->withQueryString();
 
         return view('tasks.index', compact('tasks'));
     }

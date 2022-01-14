@@ -62,6 +62,7 @@
                     @endforeach
                 </tbody>
             </table>
+            {{ $projects->links() }}
             @else
                 <p class="text-center my-4">We don't have any projects agreed with your choice...</p>
             @endif

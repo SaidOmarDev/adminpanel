@@ -114,7 +114,7 @@
             </div>
 
             <div class="container-fluid" style="margin-left: 280px">
-                <nav class="navbar flex-md-nowrap py-2 shadow">
+                <nav class="logout navbar flex-md-nowrap py-2 shadow">
                     <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#"></a>
                     <form method="POST" action="/logout">
                         @csrf

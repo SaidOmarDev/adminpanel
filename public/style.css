@@ -42,7 +42,7 @@ hr{
     background-color: aliceblue !important;
     height: 1px !important;
 }
-nav{
+nav.logout{
     background-color: #13193c;
 }
 .nav-link{

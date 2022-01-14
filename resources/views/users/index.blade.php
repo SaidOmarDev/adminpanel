@@ -5,6 +5,7 @@
             Users list
         </div>
         <div class="card-body">
+            @if ($users->count() > 0)
             <table class="table table-striped">
                 <thead class="table-dark">
                     <tr>
@@ -32,6 +33,10 @@
                     @endforeach
                 </tbody>
             </table>
+            {{ $users->links() }}
+            @else
+                <p class="text-center my-4">We don't have any users agreed with your choice...</p>
+            @endif
         </div>
     </div>
 </x-layout>

@@ -62,6 +62,7 @@
                     @endforeach
                 </tbody>
             </table>
+            {{ $tasks->links() }}
             @else
                 <p class="text-center my-4">We don't have any tasks agreed with your choice...</p>
             @endif

@@ -9,7 +9,7 @@ class ProjectController extends Controller
 {
     public function index()
     {
-        $projects = Project::with(['user', 'client', 'status'])->filter(request(['search', 'status']))->get();
+        $projects = Project::with(['user', 'client', 'status'])->filter(request(['search', 'status']))->paginate(10)->withQueryString();
 
         return view('projects.index', compact('projects'));
     }
