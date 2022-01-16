@@ -2,21 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LoginRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-    public function login()
+    public function login(LoginRequest $request)
     {
-        $attributes = request()->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required']
-        ]);
-        // $attributes['password'] = bcrypt($attributes['password']);
-
-        if (!Auth::attempt($attributes)) {
-            return back()->withErrors($attributes);
+        if (!Auth::attempt($request->validated())) {
+            return back()->withErrors($request->validated());
         }
 
         session()->regenerate();

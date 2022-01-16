@@ -2,10 +2,11 @@
 
 namespace App\Http\Requests;
 
+use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class ProjectRequest extends FormRequest
+class UserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,15 +23,13 @@ class ProjectRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(User $user)
     {
         return [
-            'title' => ['required', 'max:25'],
-            'description' => ['required', 'max:255'],
-            'deadline' => ['required'],
-            'status_id' => ['required'],
-            'user_id' => ['required', Rule::exists('users', 'id')],
-            'client_id' => ['required', Rule::exists('clients', 'id')]
+            'name' => ['required'],
+            'email' => ['required', Rule::unique('users', 'email')->ignore($user->id)],
+            'address' => ['required', 'max:255'],
+            'phone' => ['required'],
         ];
     }
 }

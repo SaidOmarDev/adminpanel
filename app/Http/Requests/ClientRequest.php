@@ -3,9 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
-class ProjectRequest extends FormRequest
+class ClientRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,12 +24,14 @@ class ProjectRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => ['required', 'max:25'],
-            'description' => ['required', 'max:255'],
-            'deadline' => ['required'],
-            'status_id' => ['required'],
-            'user_id' => ['required', Rule::exists('users', 'id')],
-            'client_id' => ['required', Rule::exists('clients', 'id')]
+            'contact_name' => ['required'],
+            'contact_email' => ['required', 'unique:clients,contact_email'],
+            'contact_phone' => ['required'],
+            'company_name' => ['required'],
+            'company_address' => ['required'],
+            'company_city' => ['required'],
+            'company_zip' => ['required'],
+            'company_vat' => ['required']
         ];
     }
 }

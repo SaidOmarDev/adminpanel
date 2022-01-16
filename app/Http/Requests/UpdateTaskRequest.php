@@ -28,7 +28,7 @@ class UpdateTaskRequest extends FormRequest
             'title' => ['required', 'max:25'],
             'description' => ['required', 'max:255'],
             'deadline' => ['required'],
-            'status' => ['required'],
+            'status_id' => ['required'],
             'user_id' => ['required', Rule::exists('users', 'id')],
             'client_id' => ['required', Rule::exists('clients', 'id')],
             'project_id' => ['required', Rule::exists('projects', 'id')]
